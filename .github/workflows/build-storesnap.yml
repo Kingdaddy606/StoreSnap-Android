@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'StoreSnap_Android_Project.zip'
+      - 'StoreSnap_Android_Project_v3_IconFix.zip'
       - '.github/workflows/build-storesnap.yml'
 
 permissions:
@@ -43,7 +43,7 @@ jobs:
 
       - name: Extract StoreSnap project
         run: |
-          unzip -o StoreSnap_Android_Project.zip -d extracted
+          unzip -o StoreSnap_Android_Project_v3_IconFix.zip -d extracted
           test -f extracted/StoreSnap/settings.gradle.kts
 
       - name: Set up Gradle
