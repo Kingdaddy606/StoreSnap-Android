@@ -1,11 +1,11 @@
 
-name: Build Pixora 2.1 APK
+name: Build Pixora 2.1 Startup Fix APK
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'Pixora_2_1_Compression_Rebrand.zip'
+      - 'Pixora_2_1_StartupFix.zip'
       - '.github/workflows/build-storesnap.yml'
 
 permissions:
@@ -44,7 +44,7 @@ jobs:
 
       - name: Extract Pixora project
         run: |
-          unzip -o Pixora_2_1_Compression_Rebrand.zip -d extracted
+          unzip -o Pixora_2_1_StartupFix.zip -d extracted
           test -f extracted/StoreSnap/settings.gradle.kts
 
       - name: Set up Gradle
@@ -59,7 +59,7 @@ jobs:
       - name: Upload Pixora APK
         uses: actions/upload-artifact@v4
         with:
-          name: Pixora-2.1-APK
+          name: Pixora-2.1-Startup-Fix-APK
           path: extracted/StoreSnap/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           
