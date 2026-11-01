@@ -1,11 +1,12 @@
-name: Build StoreSnap 2.0.1 Fixed APK
+
+name: Build Pixora 2.1 APK
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'StoreSnap_2_0_1_Fixed.zip'
-      - '.github/workflows/build-storesnap-2-0-1.yml'
+      - 'Pixora_2_1_Compression_Rebrand.zip'
+      - '.github/workflows/build-storesnap.yml'
 
 permissions:
   contents: read
@@ -41,10 +42,9 @@ jobs:
             "platforms;android-35" \
             "build-tools;35.0.0"
 
-      - name: Extract StoreSnap project
+      - name: Extract Pixora project
         run: |
-          rm -rf extracted
-          unzip -o StoreSnap_2_0_1_Fixed.zip -d extracted
+          unzip -o Pixora_2_1_Compression_Rebrand.zip -d extracted
           test -f extracted/StoreSnap/settings.gradle.kts
 
       - name: Set up Gradle
@@ -52,13 +52,14 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Build StoreSnap APK
+      - name: Build Pixora APK
         working-directory: extracted/StoreSnap
         run: gradle assembleDebug --no-daemon
 
-      - name: Upload APK
+      - name: Upload Pixora APK
         uses: actions/upload-artifact@v4
         with:
-          name: StoreSnap-2.0.1-fixed-debug-APK
+          name: Pixora-2.1-APK
           path: extracted/StoreSnap/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
           
